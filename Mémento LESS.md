@@ -269,3 +269,110 @@ On peut également avec LESS, utiliser des valeurs par défaut pour les paramèt
   /* etc. */
 }
 ```
+
+Il existe une constante dans chaque classe abstraite paramétrable, appelée ```@arguments``` et qui contient l'intégralité des paramètres passés à la classe.
+
+Les classes abstraites, comme les constantesn sont très puissantes et vous permettent de minimiser votre feuille de style et d'en faciliter la maintenance
+
+### Imbrications
+
+LESS permet de simplifier nos feuilles de style en imbriquant nos sélecteurs, comme on le ferait avec des balises HTML.
+
+```LESS
+/* LESS */
+#foo {
+  background: lemon;
+  bar { color: lightblue; }
+  baz { color: orange; }
+}
+
+/* CSS généré */
+#foo { background: lemon; }
+#foo bar { color: lightblue; }
+#foo baz { color: orange; }
+```
+
+Remarque : On peut utiliser le symbole ```&``` comme on utiliserai ```this``` dans un autre langage. Voyez comment dans l'expemple ci-dessous
+
+```LESS
+/* LESS */
+#foo {
+  background: lightgrey;
+  &:hover { color: orange; }
+}
+
+/* CSS généré */
+#foo { background: lightgrey; }
+#foo:hover { color: orange; }
+```
+
+### opérations
+
+LESS est capable d'effectuer des opérations qui permettent une fois de plus de gagner du temps
+
+```LESS
+@size_image: 100px;
+
+.box {
+  width: @size_image + 10px;
+  height: @size_image + 10px;
+
+  img {
+    width: @size_image;
+    height: @size_image;
+  }
+}
+```
+
+On aurait pu utiliser un margin dans l'exemple précédent mais LESS ne nous limite pas qu'aux opérations sur les dimensions.
+
+```LESS
+@bg_body: #555;
+@bg_header: @bg_body + #666;
+
+/* @bg_header vaut maintenant #BBB ! */
+```
+
+On peut utiliser les parenthèses pour spécifier les priorités dans des opérations complexes, et DEVEZ les utiliser quand elles sont conjointes à d'autres paramètres:
+
+```LESS
+#header { width: @width - (@space * 2 + @foo); }
+#footer { border: (@space / 2) solid orange; }
+```
+
+### Fonctions
+
+LESS propose pour l'instant une dizaine de fonctions pour interagir avec les couleurs. Il n'est pas possible de définir vos propres fonctions à l'heure actuelle. Ces fonctions sont les suivantes:
+
+![Fonctions couleurs LESS](fonctions_couleurs_LESS.png)
+
+### Commentaires
+
+LESS permet d'écrire des commentaire avec le double slash
+
+```LESS
+/* Je suis un commentaire CSS */
+// Je suis un commentaire LESS
+```
+
+Attention: Les commentaires CSS sont bien visibles dans vos sources CSS interprétées, ce n'est pas le cas des commentaires LESS. Le CSS généré de l'exemple précédent sera donc:
+
+```CSS
+/* Je suis un commentaire CSS */
+```
+
+### Inclusions
+
+LESS vous permet de séparer votre code en plusieurs fichiers pour n'en obtenir qu'un au final. C'est l'équivalent du ```#include``` en C. Vous pouvez inclure des fichier .less (l'extension est alors optionnelle) ou en .css . Attention cependant: dans ce dernier cas, le contenu des fichiers ne sera pas interprété.
+
+```LESS
+/* Importation de style LESS */
+@import 'style.less'
+/* – ou bien – */
+@import 'style'
+
+/* Importation de CSS (non interprété) */
+@import 'style.css'
+```
+
+Ce tutoriel vous à montré l'essentiel de LESS, mais il vous reste de nombreuses choses à découvrir. Pour une liste exhaustive des possibilités offertes par ce langage, je vous recommande de consulter le site officiel: http://lesscss.org/#docs

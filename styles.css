@@ -1,0 +1,22 @@
+.border {
+  border: 2px solid #ff7b00;
+  padding: 10px;
+}
+.en_rouge {
+  color: #ff0000;
+}
+.en_bleu {
+  color: #2300ff;
+}
+.titre_secondaire {
+  color: #00b7ff;
+  border: 2px solid #ff7b00;
+  padding: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+p {
+  text-align: justify;
+  color: #464646;
+}

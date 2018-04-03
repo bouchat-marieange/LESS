@@ -1,0 +1,43 @@
+// Déclaration
+@rouge: #FF0000;
+@bleu: #2300FF;
+@bleu_clair: #00B7FF;
+@gris_fonce: #464646;
+@orange:#FF7B00;
+
+.border-radius(@radius)
+{
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.border
+{
+  border: 2px solid @orange;
+  padding: 10px;
+}
+
+// Utilisation
+.en_rouge
+{
+  color: @rouge;
+}
+
+.en_bleu
+{
+  color: @bleu;
+}
+
+.titre_secondaire
+{
+  color: @bleu_clair;
+  .border;
+  .border-radius(10px);
+}
+
+p
+{
+  text-align: justify;
+  color: @gris_fonce;
+}
